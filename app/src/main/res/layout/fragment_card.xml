@@ -69,7 +69,8 @@
             android:background="@drawable/card_flower_bg"
             android:drawableLeft="@drawable/card_flower"
             android:gravity="center_vertical"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:visibility="gone"/>
 
         <com.bokun.bkjcb.myapplication.niceapp.ui.widget.HtmlTextView
             android:id="@+id/text_digest"
@@ -99,6 +100,7 @@
             android:paddingLeft="20.0dip"
             android:paddingRight="20.0dip"
             android:textColor="@color/color_shenhui"
-            android:textSize="16.0sp" />
+            android:textSize="16.0sp"
+            android:visibility="gone"/>
     </RelativeLayout>
 </RelativeLayout>

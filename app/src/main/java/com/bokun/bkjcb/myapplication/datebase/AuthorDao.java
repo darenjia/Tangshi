@@ -42,4 +42,16 @@ public class AuthorDao {
         }
         return false;
     }
+    public ArrayList<Author> query(){
+        ArrayList<Author> authors = new ArrayList<>();
+        Cursor cursor = database.query("author",null,null,null,null,null,null);
+        while (cursor.moveToNext()){
+            Author author = new Author();
+            author.setImage(cursor.getString(cursor.getColumnIndex("image")));
+            author.setDescription(cursor.getString(cursor.getColumnIndex("description")));
+            author.setName(cursor.getString(cursor.getColumnIndex("name")));
+            authors.add(author);
+        }
+        return authors;
+    }
 }

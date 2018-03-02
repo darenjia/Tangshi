@@ -10,7 +10,6 @@ import android.widget.RelativeLayout;
 
 import com.bokun.bkjcb.myapplication.R;
 import com.bokun.bkjcb.myapplication.niceapp.bean.Card;
-import com.bokun.bkjcb.myapplication.niceapp.utils.AppUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,7 +79,7 @@ public class RhythmAdapter extends BaseAdapter {
         iconParams.height = iconSize;
         imageIcon.setLayoutParams(iconParams);
         //设置背景图片
-        imageIcon.setBackgroundResource(AppUtils.getDrawableIdByName(mContext, mCardList.get(position).getIconUrl()));
+        //imageIcon.setBackgroundResource(AppUtils.getDrawableIdByName(mContext, mCardList.get(position).getIconUrl()));
 
         return relativeLayout;
     }

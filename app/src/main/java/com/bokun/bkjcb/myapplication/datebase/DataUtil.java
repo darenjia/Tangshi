@@ -21,4 +21,8 @@ public class DataUtil {
         AuthorDao dao = new AuthorDao(context);
         dao.insert(authors);
     }
+    public static ArrayList<Author> getAllAuthor(Context context){
+        AuthorDao dao = new AuthorDao(context);
+        return dao.query();
+    }
 }

@@ -13,6 +13,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.bokun.bkjcb.myapplication.R;
+import com.bokun.bkjcb.myapplication.bean.Author;
+import com.bokun.bkjcb.myapplication.datebase.DataUtil;
 import com.bokun.bkjcb.myapplication.niceapp.bean.Card;
 import com.bokun.bkjcb.myapplication.niceapp.control.IRhythmItemListener;
 import com.bokun.bkjcb.myapplication.niceapp.control.RhythmAdapter;
@@ -133,7 +135,7 @@ public class CardViewPagerFragment extends AbsBaseFragment  {
         mRocketToHeadBtn = (ImageButton) view.findViewById(R.id.btn_rocket_to_head);
         mSideMenuOrBackBtn = (Button) view.findViewById(R.id.btn_side_menu_or_back);
         mRhythmLayout = (RhythmLayout) view.findViewById(R.id.box_rhythm);
-        mViewPager = view.findViewById(R.id.pager);;
+        mViewPager = view.findViewById(R.id.pager);
         //设置ViewPager的滚动速度
         setViewPagerScrollSpeed(mViewPager, 400);
         //设置ScrollView滚动动画延迟执行的时间
@@ -216,9 +218,12 @@ public class CardViewPagerFragment extends AbsBaseFragment  {
      */
     private void fetchData() {
         ArrayList<Card> cardList = new ArrayList<>();
-        for (int i = 0; i < 30; i++) {
-            int m = i % 8;
-            Card card = addData(m);
+        ArrayList<Author> authors = DataUtil.getAllAuthor(getContext());
+        for (int i = 0; i < authors.size(); i++) {
+            Card card = new Card();
+            card.setTitle(authors.get(i).getName());
+            card.setCoverImgerUrl(authors.get(i).getImage());
+            card.setDigest(authors.get(i).getDescription());
             cardList.add(card);
         }
         mPreColor = HexUtils.getHexColor(cardList.get(0).getBackgroundColor());
