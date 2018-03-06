@@ -1,11 +1,13 @@
 package com.bokun.bkjcb.myapplication.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by DengShuai on 2018/2/28.
  * Description :
  */
 
-public class Dynasty {
+public class Dynasty implements Serializable{
     int id;
     String name;
     String author;

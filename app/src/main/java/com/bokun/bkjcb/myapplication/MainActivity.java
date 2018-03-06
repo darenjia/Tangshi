@@ -1,5 +1,7 @@
 package com.bokun.bkjcb.myapplication;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -68,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
             TextView textView = new TextView(MainActivity.this);
             Dynasty author = authors.get(position);
             textView.setText(author.getName());
+            Canvas canvas = new Canvas();
+            canvas.drawText("李白",0,0,new Paint());
             return textView;
         }
     }

@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.bokun.bkjcb.myapplication.bean.Dynasty;
 
@@ -36,18 +37,19 @@ public class DynastyDao {
     }
     public ArrayList<Dynasty> query(String name){
         ArrayList<Dynasty> dynasties = new ArrayList<>();
-        Cursor cursor = database.query("dynasty",new String[]{"id","name"},"where name = ?",new String[]{name},null,null,null);
+        Cursor cursor = database.query("dynasty",new String[]{"id","name"},"author = ?",new String[]{name},null,null,null);
         while (cursor.moveToNext()){
             Dynasty dynasty = new Dynasty();
             dynasty.setId(cursor.getInt(cursor.getColumnIndex("id")));
             dynasty.setName(cursor.getString(cursor.getColumnIndex("name")));
             dynasties.add(dynasty);
         }
+        Log.i("Deng",dynasties.size()+":"+name);
         return dynasties;
     }
     public Dynasty query(int id){
         Dynasty dynasty = new Dynasty();
-        Cursor cursor = database.query("dynasty",null,"where id = ?",new String[]{String.valueOf(id)},null,null,null);
+        Cursor cursor = database.query("dynasty",null,"id = ?",new String[]{String.valueOf(id)},null,null,null);
         if (cursor.moveToNext()){
            dynasty.setTranslation(cursor.getString(cursor.getColumnIndex("translation")));
            dynasty.setContent(cursor.getString(cursor.getColumnIndex("content")));

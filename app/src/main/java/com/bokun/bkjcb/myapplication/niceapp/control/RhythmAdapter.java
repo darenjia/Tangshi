@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 
 import com.bokun.bkjcb.myapplication.R;
 import com.bokun.bkjcb.myapplication.niceapp.bean.Card;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,7 +81,7 @@ public class RhythmAdapter extends BaseAdapter {
         imageIcon.setLayoutParams(iconParams);
         //设置背景图片
         //imageIcon.setBackgroundResource(AppUtils.getDrawableIdByName(mContext, mCardList.get(position).getIconUrl()));
-
+        Glide.with(mContext).load(mCardList.get(position).getCoverImgerUrl()).into(imageIcon);
         return relativeLayout;
     }
 

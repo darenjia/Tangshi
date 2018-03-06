@@ -25,4 +25,12 @@ public class DataUtil {
         AuthorDao dao = new AuthorDao(context);
         return dao.query();
     }
+    public static ArrayList<Dynasty> getDynasties(Context context,String name){
+        DynastyDao dao = new DynastyDao(context);
+        return dao.query(name);
+    }
+    public static Dynasty getDynasty(Context context,int id){
+        DynastyDao dao = new DynastyDao(context);
+        return dao.query(id);
+    }
 }

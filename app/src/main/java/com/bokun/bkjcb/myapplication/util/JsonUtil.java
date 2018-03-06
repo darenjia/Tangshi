@@ -67,4 +67,21 @@ public class JsonUtil {
         }
         return dynasties;
     }
+
+    public static ArrayList<String> getDynastyContent(String content){
+        ArrayList<String> strings = new ArrayList<>();
+        try {
+            JSONArray jsonArray = new JSONArray(content);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                String s = jsonArray.optString(i);
+                if (s.contains("(")){
+                    s= s.replace(s.substring(s.indexOf("("),s.indexOf(")")+1),"");
+                }
+                strings.add(s);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return strings;
+    }
 }
