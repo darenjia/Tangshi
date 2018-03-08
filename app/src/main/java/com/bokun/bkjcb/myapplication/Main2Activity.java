@@ -1,5 +1,6 @@
 package com.bokun.bkjcb.myapplication;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
@@ -12,11 +13,24 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import com.bokun.bkjcb.myapplication.bean.Author;
+import com.bokun.bkjcb.myapplication.bean.Dynasty;
+import com.bokun.bkjcb.myapplication.datebase.DataUtil;
+import com.bokun.bkjcb.myapplication.fragment.AuthorFragment;
+import com.bokun.bkjcb.myapplication.fragment.DynastyFragment;
 import com.bokun.bkjcb.myapplication.niceapp.ui.fragment.CardViewPagerFragment;
+import com.bokun.bkjcb.myapplication.util.FileUtil;
+import com.bokun.bkjcb.myapplication.util.JsonUtil;
 import com.zzhoujay.richtext.RichText;
+
+import java.util.ArrayList;
 
 public class Main2Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private CardViewPagerFragment fragment;
+    private AuthorFragment authorFragment;
+    private DynastyFragment dynastyFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +49,38 @@ public class Main2Activity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        CardViewPagerFragment fragment = CardViewPagerFragment.getInstance();
 
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        new AsyncTask<Void,Void,Void>(){
+            ArrayList<Dynasty> dynasties;
+            ArrayList<Author> authors;
+            @Override
+            protected Void doInBackground(Void... voids) {
+               if (!DataUtil.isInsert(Main2Activity.this)){
+                   dynasties= JsonUtil.getDynasty(FileUtil.readFile(Main2Activity.this,"唐诗.txt"));
+                   authors=JsonUtil.getAuthor(FileUtil.readFile(Main2Activity.this,"author.txt"));
+                   DataUtil.insertAuthors(authors,Main2Activity.this);
+                   DataUtil.insertDynasties(dynasties,Main2Activity.this);
+               }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                fragment = CardViewPagerFragment.getInstance();
+
+                authorFragment = AuthorFragment.getInstance();
+
+                dynastyFragment = DynastyFragment.getInstance();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.add(R.id.frame_layout,authorFragment);
+                transaction.add(R.id.frame_layout,dynastyFragment);
+                transaction.add(R.id.frame_layout, fragment);
+                transaction.commit();
+            }
+        }.execute();
+       /* FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.frame_layout, fragment);
-        transaction.commit();
+        transaction.commit();*/
     }
 
     @Override
@@ -79,13 +120,21 @@ public class Main2Activity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            transaction.hide(authorFragment);
+            transaction.hide(dynastyFragment);
+            transaction.show(fragment);
+
         } else if (id == R.id.nav_gallery) {
-
+            transaction.hide(fragment);
+            transaction.hide(dynastyFragment);
+            transaction.show(authorFragment);
         } else if (id == R.id.nav_slideshow) {
-
+            transaction.hide(fragment);
+            transaction.hide(authorFragment);
+            transaction.show(dynastyFragment);
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
@@ -93,7 +142,7 @@ public class Main2Activity extends AppCompatActivity
         } else if (id == R.id.nav_send) {
 
         }
-
+        transaction.commit();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

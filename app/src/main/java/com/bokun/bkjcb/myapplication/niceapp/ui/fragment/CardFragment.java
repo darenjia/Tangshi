@@ -87,7 +87,7 @@ public class CardFragment extends AbsBaseFragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Dynasty dynasty = (Dynasty) mCoverImageView.getAdapter().getItem(position);
-                DynastyActivity.ToDynastyActivity(getContext(), dynasty.getId());
+                DynastyActivity.ToDynastyActivity(getContext(), mCard.getTitle());
             }
         });
     }

@@ -47,6 +47,45 @@ public class DynastyDao {
         Log.i("Deng",dynasties.size()+":"+name);
         return dynasties;
     }
+    public ArrayList<Dynasty> query(){
+        ArrayList<Dynasty> dynasties = new ArrayList<>();
+        Cursor cursor = database.query("dynasty",new String[]{"id","name","author"},null,null,null,null,null);
+        while (cursor.moveToNext()){
+            Dynasty dynasty = new Dynasty();
+            dynasty.setId(cursor.getInt(cursor.getColumnIndex("id")));
+            dynasty.setName(cursor.getString(cursor.getColumnIndex("name")));
+            dynasty.setAuthor(cursor.getString(cursor.getColumnIndex("author")));
+            dynasties.add(dynasty);
+        }
+        return dynasties;
+    }
+    public ArrayList<Dynasty> queryByKey(String key){
+        ArrayList<Dynasty> dynasties = new ArrayList<>();
+        Cursor cursor = database.query("dynasty",new String[]{"id","name"},"name like ?",new String[]{"%"+key+"%"},null,null,null);
+        while (cursor.moveToNext()){
+            Dynasty dynasty = new Dynasty();
+            dynasty.setId(cursor.getInt(cursor.getColumnIndex("id")));
+            dynasty.setName(cursor.getString(cursor.getColumnIndex("name")));
+            dynasties.add(dynasty);
+        }
+        return dynasties;
+    }
+    public ArrayList<Dynasty> query_detail(String name){
+        ArrayList<Dynasty> dynasties = new ArrayList<>();
+        Cursor cursor = database.query("dynasty",null,"author = ?",new String[]{name},null,null,null);
+        while (cursor.moveToNext()){
+            Dynasty dynasty = new Dynasty();
+            dynasty.setId(cursor.getInt(cursor.getColumnIndex("id")));
+            dynasty.setTranslation(cursor.getString(cursor.getColumnIndex("translation")));
+            dynasty.setContent(cursor.getString(cursor.getColumnIndex("content")));
+            dynasty.setName(cursor.getString(cursor.getColumnIndex("name")));
+            dynasty.setAuthor(cursor.getString(cursor.getColumnIndex("author")));
+            dynasty.setDescription(cursor.getString(cursor.getColumnIndex("des")));
+            dynasties.add(dynasty);
+        }
+        Log.i("Deng",dynasties.size()+":"+name);
+        return dynasties;
+    }
     public Dynasty query(int id){
         Dynasty dynasty = new Dynasty();
         Cursor cursor = database.query("dynasty",null,"id = ?",new String[]{String.valueOf(id)},null,null,null);

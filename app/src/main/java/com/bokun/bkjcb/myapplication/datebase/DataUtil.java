@@ -25,12 +25,34 @@ public class DataUtil {
         AuthorDao dao = new AuthorDao(context);
         return dao.query();
     }
+
+    public static ArrayList<Author> getAuthor(Context context,String key){
+        AuthorDao dao = new AuthorDao(context);
+        return dao.query(key);
+    }
+    public static ArrayList<Dynasty> getDynasty(Context context,String key){
+        DynastyDao dao = new DynastyDao(context);
+        return dao.queryByKey(key);
+    }
+    public static boolean isInsert(Context context){
+        AuthorDao dao = new AuthorDao(context);
+        return dao.tableExist();
+    }
     public static ArrayList<Dynasty> getDynasties(Context context,String name){
         DynastyDao dao = new DynastyDao(context);
         return dao.query(name);
+    }
+    public static ArrayList<Dynasty> getDynasties_detail(Context context,String name){
+        DynastyDao dao = new DynastyDao(context);
+        return dao.query_detail(name);
     }
     public static Dynasty getDynasty(Context context,int id){
         DynastyDao dao = new DynastyDao(context);
         return dao.query(id);
     }
+    public static ArrayList<Dynasty> getDynasty(Context context){
+        DynastyDao dao = new DynastyDao(context);
+        return dao.query();
+    }
+
 }

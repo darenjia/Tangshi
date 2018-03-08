@@ -54,4 +54,25 @@ public class AuthorDao {
         }
         return authors;
     }
+    public ArrayList<Author> query(String key){
+        ArrayList<Author> authors = new ArrayList<>();
+        Cursor cursor = database.query("author",null,"name like ?",new String[]{"%"+key+"%"},null,null,null);
+        while (cursor.moveToNext()){
+            Author author = new Author();
+            author.setImage(cursor.getString(cursor.getColumnIndex("image")));
+            author.setDescription(cursor.getString(cursor.getColumnIndex("description")));
+            author.setName(cursor.getString(cursor.getColumnIndex("name")));
+            authors.add(author);
+        }
+        return authors;
+    }
+
+    public boolean tableExist(){
+            Cursor cursor = database.query("author",new String[]{"id"},null,null,null,null,null);
+            if (cursor.moveToNext()){
+                return true;
+            }
+
+        return false;
+    }
 }

@@ -1,5 +1,7 @@
 package com.bokun.bkjcb.myapplication.util;
 
+import android.util.Log;
+
 import com.bokun.bkjcb.myapplication.bean.Author;
 import com.bokun.bkjcb.myapplication.bean.Dynasty;
 
@@ -40,6 +42,7 @@ public class JsonUtil {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        Log.i("Deng","size"+authors.size());
         return authors;
     }
     public static ArrayList<Dynasty> getDynasty(String s){
