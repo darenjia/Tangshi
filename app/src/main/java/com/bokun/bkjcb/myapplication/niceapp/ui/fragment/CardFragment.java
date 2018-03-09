@@ -2,7 +2,6 @@ package com.bokun.bkjcb.myapplication.niceapp.ui.fragment;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,9 +25,7 @@ public class CardFragment extends AbsBaseFragment {
     protected Card mCard;
 
 
-    protected TextView mAuthorText;
     protected ImageView mBottomEdgeImageView;
-    protected TextView mBravoNumText;
     protected RelativeLayout mCardLayout;
     protected ListView mCoverImageView;
     protected HtmlTextView mDigestText;
@@ -52,15 +49,11 @@ public class CardFragment extends AbsBaseFragment {
         mTitleText = ((TextView) view.findViewById(R.id.text_title));
         mSubTitleText = ((TextView) view.findViewById(R.id.text_subtitle));
         mDigestText = ((HtmlTextView) view.findViewById(R.id.text_digest));
-        mAuthorText = ((TextView) view.findViewById(R.id.text_author));
-        mBravoNumText = ((TextView) view.findViewById(R.id.text_bravos));
 
         mTitleText.setText(this.mCard.getTitle());
-        mTitleText.setTypeface(Typeface.createFromAsset(getContext().getAssets(),"fonts/xingkai.ttf"));
+        mTitleText.setTypeface(Typeface.createFromAsset(getContext().getAssets(),"fonts/songti.TTF"));
         mSubTitleText.setText(this.mCard.getSubTitle());
-        this.mBravoNumText.setText("  " + this.mCard.getUpNum());
         this.mDigestText.setText(mCard.getDigest());
-        this.mAuthorText.setText(Html.fromHtml("<B>" + this.mCard.getAuthorName() + "</B>"));
         mCoverImageView.setAdapter(new DynastyAdapter(getContext(), DataUtil.getDynasties(getContext(), mCard.getTitle())));
 
         initAndDisplayCoverImage();

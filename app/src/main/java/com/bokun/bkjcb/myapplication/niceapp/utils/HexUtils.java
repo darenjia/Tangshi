@@ -70,4 +70,9 @@ public class HexUtils {
         }
         return localStringBuilder.toString();
     }
+
+    public static String randomColor(int position) {
+        String[] colors = {"#EEEEE0", "#EED8AE","#EEA9B8","#EE6A50","#E0FFFF","#CDC673","#CAE1FF"};
+        return colors[position%(colors.length-1)];
+    }
 }

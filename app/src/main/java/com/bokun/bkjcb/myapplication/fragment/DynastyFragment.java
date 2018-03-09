@@ -57,7 +57,7 @@ public class DynastyFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_author, null);
+        View view = inflater.inflate(R.layout.fragment_dynasty, null);
         editText = view.findViewById(R.id.edit_search);
         listView = view.findViewById(R.id.listView);
         new DynastyFragment.LoadDataTask().execute();

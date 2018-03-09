@@ -39,7 +39,7 @@ public class DynastyContent extends Fragment {
         LinearLayout linearLayout = view.findViewById(R.id.dynasty_contents);
         XRichText trans =view. findViewById(R.id.trans);
         XRichText des = view.findViewById(R.id.des);
-        Typeface typeface1 = Typeface.createFromAsset(getContext().getAssets(),"fonts/xingkai.ttf");
+        Typeface typeface1 = Typeface.createFromAsset(getContext().getAssets(),"fonts/songti.TTF");
         Typeface typeface2 = Typeface.createFromAsset(getContext().getAssets(),"fonts/peian.ttf");
         Typeface typeface3 = Typeface.createFromAsset(getContext().getAssets(),"fonts/kaiti.ttf");
         title.setText(dynasty.getName());

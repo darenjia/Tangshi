@@ -21,7 +21,8 @@
         <activity
             android:name=".Main2Activity"
             android:label="@string/title_activity_main2"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,8 +31,11 @@
         </activity>
         <activity
             android:name=".DynastyActivity"
-            android:label="@string/title_activity_dynasty" />
-        <activity android:name=".AuthorActivity"></activity>
+            android:label="@string/title_activity_dynasty"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".AuthorActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
     </application>
 
 </manifest>

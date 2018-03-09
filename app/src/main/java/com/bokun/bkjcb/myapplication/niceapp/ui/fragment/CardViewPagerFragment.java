@@ -224,6 +224,7 @@ public class CardViewPagerFragment extends AbsBaseFragment  {
             card.setTitle(authors.get(i).getName());
             card.setCoverImgerUrl(authors.get(i).getImage());
             card.setDigest(authors.get(i).getDescription());
+            card.setBackgroundColor(HexUtils.randomColor(i));
             cardList.add(card);
         }
         mPreColor = HexUtils.getHexColor(cardList.get(0).getBackgroundColor());

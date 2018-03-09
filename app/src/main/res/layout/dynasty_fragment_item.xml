@@ -6,13 +6,13 @@
     app:cardCornerRadius="5dp">
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_1">
         <LinearLayout
             android:id="@+id/dynasty"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/bg_meihua">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/dynasty_name"

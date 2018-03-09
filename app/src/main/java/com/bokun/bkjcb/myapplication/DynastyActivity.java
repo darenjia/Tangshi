@@ -29,6 +29,7 @@ public class DynastyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dynasty);
         String name = getIntent().getStringExtra("author");
+        setTitle(name+"作品");
         int id = getIntent().getIntExtra("id",0);
         viewPager = findViewById(R.id.dynasty_viewpager);
         frameLayout = findViewById(R.id.dynasty_content);

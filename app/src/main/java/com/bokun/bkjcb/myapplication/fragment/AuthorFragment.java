@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.bokun.bkjcb.myapplication.AuthorActivity;
@@ -21,8 +22,11 @@ import com.bokun.bkjcb.myapplication.bean.Author;
 import com.bokun.bkjcb.myapplication.datebase.DataUtil;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import co.lujun.androidtagview.TagContainerLayout;
+import co.lujun.androidtagview.TagView;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
@@ -45,6 +49,9 @@ public class AuthorFragment extends Fragment {
     private ListView listView;
     private SimpleAdapter adapter;
     private static AuthorFragment fragment;
+    private TagContainerLayout layout;
+    private List<String> strings;
+    private ImageView close;
 
     public static AuthorFragment getInstance() {
         if (fragment == null) {
@@ -60,6 +67,15 @@ public class AuthorFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_author, null);
         editText = view.findViewById(R.id.edit_search);
         listView = view.findViewById(R.id.listView);
+        layout = view.findViewById(R.id.tags);
+        close = view.findViewById(R.id.close);
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               editText.setText("");
+               close.setVisibility(View.GONE);
+            }
+        });
         new LoadDataTask().execute();
         return view;
     }
@@ -81,7 +97,13 @@ public class AuthorFragment extends Fragment {
 
                     @Override
                     public void afterTextChanged(Editable s) {
-                        e.onNext(s.toString().trim());
+                        if (s.toString().equals("")) {
+                            close.setVisibility(View.GONE);
+                            adapter.replaceData(new ArrayList<>());
+                        } else {
+                            close.setVisibility(View.VISIBLE);
+                            e.onNext(s.toString().trim());
+                        }
                     }
                 });
             }
@@ -97,8 +119,9 @@ public class AuthorFragment extends Fragment {
 
         @Override
         protected Object doInBackground(Object[] objects) {
-            authors = DataUtil.getAllAuthor(getContext());
+            authors = new ArrayList<>();
             adapter = new SimpleAdapter(authors, getContext(), 1);
+            strings = DataUtil.getTags(getContext());
             return null;
         }
 
@@ -110,6 +133,23 @@ public class AuthorFragment extends Fragment {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     AuthorActivity.ToAuthorActivity(getContext(), authors.get(position));
+                }
+            });
+            layout.setTags(strings);
+            layout.setOnTagClickListener(new TagView.OnTagClickListener() {
+                @Override
+                public void onTagClick(int position, String text) {
+                    editText.setText(text);
+                }
+
+                @Override
+                public void onTagLongClick(int position, String text) {
+
+                }
+
+                @Override
+                public void onTagCrossClick(int position) {
+
                 }
             });
         }
