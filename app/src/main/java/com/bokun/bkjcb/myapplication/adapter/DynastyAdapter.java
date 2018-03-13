@@ -4,7 +4,11 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bokun.bkjcb.myapplication.DynastyActivity;
 import com.bokun.bkjcb.myapplication.R;
 import com.bokun.bkjcb.myapplication.bean.Dynasty;
 
@@ -27,7 +31,7 @@ public class DynastyAdapter extends BaseAdapter {
     public DynastyAdapter(ArrayList<?> list, Context context, int type) {
         this.list = list;
         this.context = context;
-        this.type=type;
+        this.type = type;
     }
 
     @Override
@@ -46,21 +50,28 @@ public class DynastyAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         View view;
         XRichText title;
         XRichText content;
-        if (convertView==null){
-            convertView =  View.inflate(context,R.layout.search_item,null);
+        if (convertView == null) {
+            convertView = View.inflate(context, R.layout.search_item, null);
             view = convertView.findViewById(R.id.dynasty_search_item);
             convertView.setTag(view);
-        }else {
-             view = (View) convertView.getTag();
+        } else {
+            view = (View) convertView.getTag();
         }
         title = view.findViewById(R.id.title);
         content = view.findViewById(R.id.content);
-        title.text(((Dynasty)list.get(position)).getName());
-        content.text(((Dynasty)list.get(position)).getContent());
+        TextView layout = view.findViewById(R.id.empty_text);
+        title.text(((Dynasty) list.get(position)).getName());
+        content.text(((Dynasty) list.get(position)).getContent());
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DynastyActivity.ToDynastyActivity(context, ((Dynasty) list.get(position)).getId());
+            }
+        });
         return view;
     }
 

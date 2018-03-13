@@ -30,11 +30,12 @@
         </activity>
         <activity
             android:name=".DynastyActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:label="@string/title_activity_dynasty"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
             android:name=".AuthorActivity"
-            android:theme="@style/AppTheme"
+            android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
     </application>
 

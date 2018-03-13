@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.FrameLayout;
 
@@ -23,11 +24,14 @@ public class DynastyActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private ArrayList<Fragment> fragments;
     private FrameLayout frameLayout;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dynasty);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         String name = getIntent().getStringExtra("author");
         int id = getIntent().getIntExtra("id",0);
         viewPager = findViewById(R.id.dynasty_viewpager);
@@ -36,12 +40,12 @@ public class DynastyActivity extends AppCompatActivity {
             frameLayout.setVisibility(View.VISIBLE);
             viewPager.setVisibility(View.GONE);
             Dynasty dynasty = DataUtil.getDynasty(this,id);
-            setTitle(dynasty.getName()+"作品");
+            getSupportActionBar().setTitle(dynasty.getAuthor()+"作品");
             DynastyContent frgment = new DynastyContent();
             frgment.setDynasty(dynasty);
             getSupportFragmentManager().beginTransaction().add(R.id.dynasty_content,frgment).commit();
         }else {
-            setTitle(name+"作品");
+            getSupportActionBar().setTitle(name+"作品");
             ArrayList<Dynasty> dynasties = DataUtil.getDynasties_detail(this, name);
             fragments= new ArrayList<>();
             for (int i = 0; i < dynasties.size(); i++) {

@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Tangshi.iml" filepath="$PROJECT_DIR$/Tangshi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Dyansty.iml" filepath="$PROJECT_DIR$/Dyansty.iml" />
+      <module fileurl="file://D:\Deng\Android\Dyansty\Tangshi.iml" filepath="D:\Deng\Android\Dyansty\Tangshi.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://D:\Deng\Android\Dyansty\app\app.iml" filepath="D:\Deng\Android\Dyansty\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/niceapp/niceapp.iml" filepath="$PROJECT_DIR$/niceapp/niceapp.iml" />
+      <module fileurl="file://D:\Deng\Android\Dyansty\niceapp\niceapp.iml" filepath="D:\Deng\Android\Dyansty\niceapp\niceapp.iml" />
     </modules>
   </component>
 </project>

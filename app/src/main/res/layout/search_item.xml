@@ -1,38 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dynasty_search_item"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/dynasty_search_item"
-    android:orientation="vertical"
     android:padding="5dp">
 
-    <android.support.v7.widget.CardView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        card_view:cardCornerRadius="5dp">
-
-        <LinearLayout
+        android:background="@color/white"
+        android:orientation="vertical">
+        <cn.droidlover.xrichtext.XRichText
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:padding="5dp"
+            android:focusable="false"
+            android:textColor="@color/umeng_fb_color_btn_pressed"
+            android:textSize="18sp" />
 
-            <cn.droidlover.xrichtext.XRichText
-                android:id="@+id/title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="5dp"
-                android:textSize="16sp"
-                android:textColor="@color/umeng_fb_color_btn_pressed" />
+        <cn.droidlover.xrichtext.XRichText
+            android:id="@+id/content"
+            android:focusable="false"
+            android:layout_below="@id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp" />
 
-            <cn.droidlover.xrichtext.XRichText
-                android:id="@+id/content"
-                android:paddingLeft="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
-
-</LinearLayout>
+        <LinearLayout
+            android:layout_below="@id/content"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:focusable="true"
+            android:background="@color/backColor" />
+        <TextView
+            android:id="@+id/empty_text"
+            android:layout_width="match_parent"
+            android:layout_alignBottom="@id/content"
+            android:layout_alignTop="@id/title"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+</RelativeLayout>

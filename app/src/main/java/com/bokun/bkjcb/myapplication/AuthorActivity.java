@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,10 +18,14 @@ import me.codeboy.android.aligntextview.AlignTextView;
 public class AuthorActivity extends AppCompatActivity {
 
     private Author author;
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_author);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         author = (Author) getIntent().getSerializableExtra("author");
         TextView author_name = findViewById(R.id.author_name);
         ImageView author_icon = findViewById(R.id.author_icon);
@@ -29,7 +34,7 @@ public class AuthorActivity extends AppCompatActivity {
         Typeface typeface1 = Typeface.createFromAsset(getAssets(),"fonts/kaiti.ttf");
         Typeface typeface2 = Typeface.createFromAsset(getAssets(),"fonts/peian.ttf");
 
-        setTitle(author.getName());
+        getSupportActionBar().setTitle(author.getName());
         author_name.setText(author.getName());
         author_name.setTypeface(typeface2);
         Glide.with(this).load(author.getImage()).into(author_icon);
