@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.bokun.bkjcb.myapplication.bean.Author;
 import com.bokun.bkjcb.myapplication.bean.Dynasty;
+import com.bokun.bkjcb.myapplication.util.JsonUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,11 @@ public class DataUtil {
     public static ArrayList<Author> getAuthor(Context context, String key) {
         AuthorDao dao = new AuthorDao(context);
         return dao.query(key);
+    }
+
+    public static Author getAuthorByname(Context context, String key) {
+        AuthorDao dao = new AuthorDao(context);
+        return dao.queryByName(key);
     }
 
     public static ArrayList<Dynasty> getDynasty(Context context, String key) {
@@ -67,6 +73,26 @@ public class DataUtil {
     public static List<String> getTags(Context context) {
         AuthorDao dao = new AuthorDao(context);
         return dao.getTags();
+    }
+
+    public static ArrayList<Dynasty> getDynastyByKey(Context context, String key) {
+        DynastyDao dao = new DynastyDao(context);
+        ArrayList<Dynasty> dynasties;
+        if (key.equals("")) {
+            dynasties = dao.query();
+        } else {
+            dynasties = dao.queryByKey(key);
+        }
+        for (int i = 0; i < dynasties.size(); i++) {
+            Dynasty dynasty = dynasties.get(i);
+            if (key.equals("")) {
+                dynasty.setContent(JsonUtil.getContent(dynasty.getContent()));
+            } else {
+                dynasty.setContent(JsonUtil.getContent(dynasty.getContent()).replace(key, "<span style='color:#FF4444'>" + key + "</span>"));
+                dynasty.setName(dynasty.getName().replace(key, "<span style='color:#FF4444'>" + key + "</span>"));
+            }
+        }
+        return dynasties;
     }
 
 }

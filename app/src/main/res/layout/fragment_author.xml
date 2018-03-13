@@ -17,58 +17,53 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <android.support.v7.widget.CardView
+
+            <LinearLayout
+                android:id="@+id/linearLayout_search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                card_view:cardCornerRadius="5dp">
+                android:orientation="vertical"
+                android:padding="10dp">
 
                 <LinearLayout
-                    android:id="@+id/linearLayout_search"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                    <EditText
+                        android:id="@+id/edit_search"
+                        android:layout_width="0dp"
+                        android:layout_height="47dp"
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:hint="关键字"
+                        android:imeOptions="actionSearch"
+                        android:inputType="text"
+                        android:maxLength="10"
+                        android:maxLines="1"
+                        android:paddingEnd="8dp"
+                        android:paddingStart="8dp" />
 
-                        <EditText
-                            android:id="@+id/edit_search"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="47dp"
-                            android:background="#fff"
-                            android:hint="关键字"
-                            android:imeOptions="actionSearch"
-                            android:inputType="text"
-                            android:maxLength="10"
-                            android:maxLines="1"
-                            android:paddingEnd="8dp"
-                            android:paddingStart="8dp" />
-
-                        <ImageView
-                            android:id="@+id/close"
-                            android:layout_width="47dp"
-                            android:layout_height="47dp"
-                            android:src="@mipmap/ic_close"
-                            android:padding="6dp"
-                            android:visibility="gone"/>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/search_hint" />
-
-                    <ListView
-                        android:id="@+id/listView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp" />
+                    <ImageView
+                        android:id="@+id/close"
+                        android:layout_width="47dp"
+                        android:layout_height="47dp"
+                        android:padding="6dp"
+                        android:src="@mipmap/ic_close"
+                        android:visibility="gone" />
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/search_hint" />
+
+                <ListView
+                    android:id="@+id/listView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp" />
+            </LinearLayout>
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
@@ -84,10 +79,8 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/topic_bg"
                         android:padding="10dp"
-                        android:text="作者推荐:"
-                        android:textColor="@color/white"
+                        android:text="作者推荐"
                         android:textSize="16sp" />
 
                     <co.lujun.androidtagview.TagContainerLayout
@@ -96,11 +89,12 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="0dp"
                         android:padding="10dp"
+                        app:container_background_color="@color/white"
                         app:container_border_radius="0dp"
                         app:container_enable_drag="false"
                         app:horizontal_interval="10dp"
                         app:tag_clickable="true"
-                        app:tag_corner_radius="2dp"
+                        app:tag_corner_radius="0dp"
                         app:tag_theme="random"
                         app:vertical_interval="10dp" />
                 </LinearLayout>

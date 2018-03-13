@@ -49,23 +49,26 @@ public class DynastyDao {
     }
     public ArrayList<Dynasty> query(){
         ArrayList<Dynasty> dynasties = new ArrayList<>();
-        Cursor cursor = database.query("dynasty",new String[]{"id","name","author"},null,null,null,null,null);
+        Cursor cursor = database.query("dynasty",null,null,null,null,null,null);
         while (cursor.moveToNext()){
             Dynasty dynasty = new Dynasty();
             dynasty.setId(cursor.getInt(cursor.getColumnIndex("id")));
             dynasty.setName(cursor.getString(cursor.getColumnIndex("name")));
             dynasty.setAuthor(cursor.getString(cursor.getColumnIndex("author")));
+            dynasty.setContent(cursor.getString(cursor.getColumnIndex("content")));
             dynasties.add(dynasty);
         }
         return dynasties;
     }
     public ArrayList<Dynasty> queryByKey(String key){
         ArrayList<Dynasty> dynasties = new ArrayList<>();
-        Cursor cursor = database.query("dynasty",new String[]{"id","name"},"name like ?",new String[]{"%"+key+"%"},null,null,null);
+        Cursor cursor = database.query("dynasty",null,"name like ? or content like ?",new String[]{"%"+key+"%","%"+key+"%"},null,null,null);
         while (cursor.moveToNext()){
             Dynasty dynasty = new Dynasty();
             dynasty.setId(cursor.getInt(cursor.getColumnIndex("id")));
             dynasty.setName(cursor.getString(cursor.getColumnIndex("name")));
+            dynasty.setContent(cursor.getString(cursor.getColumnIndex("content")));
+            dynasty.setAuthor(cursor.getString(cursor.getColumnIndex("author")));
             dynasties.add(dynasty);
         }
         return dynasties;

@@ -29,7 +29,6 @@ public class DynastyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dynasty);
         String name = getIntent().getStringExtra("author");
-        setTitle(name+"作品");
         int id = getIntent().getIntExtra("id",0);
         viewPager = findViewById(R.id.dynasty_viewpager);
         frameLayout = findViewById(R.id.dynasty_content);
@@ -37,10 +36,12 @@ public class DynastyActivity extends AppCompatActivity {
             frameLayout.setVisibility(View.VISIBLE);
             viewPager.setVisibility(View.GONE);
             Dynasty dynasty = DataUtil.getDynasty(this,id);
+            setTitle(dynasty.getName()+"作品");
             DynastyContent frgment = new DynastyContent();
             frgment.setDynasty(dynasty);
             getSupportFragmentManager().beginTransaction().add(R.id.dynasty_content,frgment).commit();
         }else {
+            setTitle(name+"作品");
             ArrayList<Dynasty> dynasties = DataUtil.getDynasties_detail(this, name);
             fragments= new ArrayList<>();
             for (int i = 0; i < dynasties.size(); i++) {

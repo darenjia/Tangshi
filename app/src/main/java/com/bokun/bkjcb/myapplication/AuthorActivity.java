@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.bokun.bkjcb.myapplication.bean.Author;
 import com.bumptech.glide.Glide;
-import com.jaeger.library.StatusBarUtil;
 
 import me.codeboy.android.aligntextview.AlignTextView;
 
@@ -22,7 +21,6 @@ public class AuthorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_author);
-        StatusBarUtil.setTransparent(this);
         author = (Author) getIntent().getSerializableExtra("author");
         TextView author_name = findViewById(R.id.author_name);
         ImageView author_icon = findViewById(R.id.author_icon);
@@ -31,6 +29,7 @@ public class AuthorActivity extends AppCompatActivity {
         Typeface typeface1 = Typeface.createFromAsset(getAssets(),"fonts/kaiti.ttf");
         Typeface typeface2 = Typeface.createFromAsset(getAssets(),"fonts/peian.ttf");
 
+        setTitle(author.getName());
         author_name.setText(author.getName());
         author_name.setTypeface(typeface2);
         Glide.with(this).load(author.getImage()).into(author_icon);

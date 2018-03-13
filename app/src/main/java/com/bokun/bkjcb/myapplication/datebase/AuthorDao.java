@@ -73,6 +73,17 @@ public class AuthorDao {
         return authors;
     }
 
+    public Author queryByName(String key) {
+        Author author = new Author();
+        Cursor cursor = database.query("author", null, "name = ?", new String[]{ key }, null, null, null);
+        if (cursor.moveToNext()) {
+            author.setImage(cursor.getString(cursor.getColumnIndex("image")));
+            author.setDescription(cursor.getString(cursor.getColumnIndex("description")));
+            author.setName(cursor.getString(cursor.getColumnIndex("name")));
+        }
+        return author;
+    }
+
     public boolean tableExist() {
         Cursor cursor = database.query("author", new String[]{"id"}, null, null, null, null, null);
         if (cursor.moveToNext()) {

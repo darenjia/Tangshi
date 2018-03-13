@@ -9,7 +9,7 @@
     </style>
     <style name="DynastyTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/comment_bg</item>
+        <item name="colorPrimary">@color/ranking_top_name</item>
         <item name="colorPrimaryDark">@color/comment_bg</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>

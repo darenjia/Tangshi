@@ -16,7 +16,7 @@ import android.widget.ListView;
 
 import com.bokun.bkjcb.myapplication.DynastyActivity;
 import com.bokun.bkjcb.myapplication.R;
-import com.bokun.bkjcb.myapplication.adapter.SimpleAdapter;
+import com.bokun.bkjcb.myapplication.adapter.DynastyAdapter;
 import com.bokun.bkjcb.myapplication.bean.Dynasty;
 import com.bokun.bkjcb.myapplication.datebase.DataUtil;
 
@@ -43,7 +43,7 @@ public class DynastyFragment extends Fragment {
     private Disposable disposable;
     private ArrayList<Dynasty> dynasties;
     private ListView listView;
-    private SimpleAdapter adapter;
+    private DynastyAdapter adapter;
     private static DynastyFragment fragment;
 
     public static DynastyFragment getInstance() {
@@ -97,8 +97,8 @@ public class DynastyFragment extends Fragment {
 
         @Override
         protected Object doInBackground(Object[] objects) {
-            dynasties = DataUtil.getDynasty(getContext());
-            adapter = new SimpleAdapter(dynasties, getContext(), 0);
+            dynasties = DataUtil.getDynastyByKey(getContext(),"");
+            adapter = new DynastyAdapter(dynasties, getContext(), 0);
             return null;
         }
 
@@ -130,7 +130,7 @@ public class DynastyFragment extends Fragment {
                 .map(new Function<String, ArrayList<Dynasty>>() {
                     @Override
                     public ArrayList<Dynasty> apply(String s) throws Exception {
-                        return DataUtil.getDynasty(getContext(), s);
+                        return DataUtil.getDynastyByKey(getContext(), s);
                     }
                 })
                 .observeOn(AndroidSchedulers.mainThread())

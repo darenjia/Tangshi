@@ -77,14 +77,24 @@ public class JsonUtil {
             JSONArray jsonArray = new JSONArray(content);
             for (int i = 0; i < jsonArray.length(); i++) {
                 String s = jsonArray.optString(i);
-                if (s.contains("(")){
-                    s= s.replace(s.substring(s.indexOf("("),s.indexOf(")")+1),"");
-                }
                 strings.add(s);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return strings;
+    }
+    public static String getContent(String content){
+        StringBuilder builder = new StringBuilder();
+        try {
+            JSONArray jsonArray = new JSONArray(content);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                String s = jsonArray.optString(i);
+                builder.append(s).append("<br/>");
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return builder.toString();
     }
 }

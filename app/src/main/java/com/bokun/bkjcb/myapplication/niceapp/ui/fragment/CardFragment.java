@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bokun.bkjcb.myapplication.AuthorActivity;
 import com.bokun.bkjcb.myapplication.DynastyActivity;
 import com.bokun.bkjcb.myapplication.R;
 import com.bokun.bkjcb.myapplication.bean.Dynasty;
@@ -51,7 +52,7 @@ public class CardFragment extends AbsBaseFragment {
         mDigestText = ((HtmlTextView) view.findViewById(R.id.text_digest));
 
         mTitleText.setText(this.mCard.getTitle());
-        mTitleText.setTypeface(Typeface.createFromAsset(getContext().getAssets(),"fonts/songti.TTF"));
+        mTitleText.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "fonts/songti.TTF"));
         mSubTitleText.setText(this.mCard.getSubTitle());
         this.mDigestText.setText(mCard.getDigest());
         mCoverImageView.setAdapter(new DynastyAdapter(getContext(), DataUtil.getDynasties(getContext(), mCard.getTitle())));
@@ -80,7 +81,19 @@ public class CardFragment extends AbsBaseFragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Dynasty dynasty = (Dynasty) mCoverImageView.getAdapter().getItem(position);
+                DynastyActivity.ToDynastyActivity(getContext(), dynasty.getId());
+            }
+        });
+        mTitleText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 DynastyActivity.ToDynastyActivity(getContext(), mCard.getTitle());
+            }
+        });
+        mDigestText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AuthorActivity.ToAuthorActivity(getContext(), DataUtil.getAuthorByname(getContext(), mCard.getTitle()));
             }
         });
     }
