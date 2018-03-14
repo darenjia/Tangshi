@@ -19,8 +19,9 @@ public class AuthorDao {
     SQLiteDatabase database;
 
     public AuthorDao(Context context) {
-        SQLiteOpenUtil util = new SQLiteOpenUtil(context);
-        database = util.getWritableDatabase();
+        /*SQLiteOpenUtil util = new SQLiteOpenUtil(context);
+        database = util.getWritableDatabase();*/
+        database=SQLUtil.newInstance(context).getDatabase();
     }
 
     public void insert(Author author) {

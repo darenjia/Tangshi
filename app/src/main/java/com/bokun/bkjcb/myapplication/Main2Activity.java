@@ -10,6 +10,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,6 +39,7 @@ public class Main2Activity extends AppCompatActivity
     private DynastyFragment dynastyFragment;
     private Toolbar toolbar;
     private long time;
+    private DrawerLayout drawer;
 
     @SuppressLint("StaticFieldLeak")
     @Override
@@ -48,7 +50,7 @@ public class Main2Activity extends AppCompatActivity
         setSupportActionBar(toolbar);
         RichText.initCacheDir(getCacheDir());
         FrameLayout layout = findViewById(R.id.frame_layout);
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -69,32 +71,36 @@ public class Main2Activity extends AppCompatActivity
                     authors = JsonUtil.getAuthor(FileUtil.readFile(Main2Activity.this, "author.txt"));
                     DataUtil.insertAuthors(authors, Main2Activity.this);
                     DataUtil.insertDynasties(dynasties, Main2Activity.this);
+                    Log.i("Deng", "hah");
                 }
+
                 return null;
             }
 
             @Override
             protected void onPostExecute(Void aVoid) {
-                fragment = CardViewPagerFragment.getInstance();
 
-                authorFragment = AuthorFragment.getInstance();
 
-                dynastyFragment = DynastyFragment.getInstance();
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.add(R.id.frame_layout, authorFragment);
-                transaction.add(R.id.frame_layout, dynastyFragment);
+             /*   transaction.add(R.id.frame_layout, authorFragment);
+                transaction.add(R.id.frame_layout, dynastyFragment);*/
                 transaction.add(R.id.frame_layout, fragment);
                 transaction.commit();
             }
-        }.execute();
-       /* FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        };
+        authorFragment = AuthorFragment.getInstance();
+
+        dynastyFragment = DynastyFragment.getInstance();
+        fragment = CardViewPagerFragment.getInstance();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.frame_layout, authorFragment);
+        transaction.add(R.id.frame_layout, dynastyFragment);
         transaction.add(R.id.frame_layout, fragment);
-        transaction.commit();*/
+        transaction.commit();
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -104,7 +110,8 @@ public class Main2Activity extends AppCompatActivity
             } else {
                 try {
                     android.os.Process.killProcess(android.os.Process.myPid());
-                } catch (Exception e) {	}
+                } catch (Exception e) {
+                }
             }
         }
     }
@@ -157,7 +164,7 @@ public class Main2Activity extends AppCompatActivity
             DialogPlus dialog = DialogPlus.newDialog(this)
                     .setContentHolder(new ViewHolder(R.layout.content))
                     .setGravity(Gravity.BOTTOM)
-                    .setExpanded(true,400)  // This will enable the expand feature, (similar to android L share dialog)
+                    .setExpanded(true, 400)  // This will enable the expand feature, (similar to android L share dialog)
                     .create();
             dialog.show();
         } else if (id == R.id.nav_send) {

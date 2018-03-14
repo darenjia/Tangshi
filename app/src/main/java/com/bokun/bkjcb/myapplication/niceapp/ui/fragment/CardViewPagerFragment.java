@@ -24,7 +24,6 @@ import com.bokun.bkjcb.myapplication.niceapp.ui.adapter.CardPagerAdapter;
 import com.bokun.bkjcb.myapplication.niceapp.ui.widget.ProgressHUD;
 import com.bokun.bkjcb.myapplication.niceapp.utils.AnimatorUtils;
 import com.bokun.bkjcb.myapplication.niceapp.utils.HexUtils;
-import com.bokun.bkjcb.myapplication.niceapp.utils.NetWorkHelper;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -111,9 +110,9 @@ public class CardViewPagerFragment extends AbsBaseFragment  {
 
         public void onPageSelected(int position) {
             onAppPagerChange(position);
-            if (mHasNext && (position > -10 + mCardList.size()) && !mIsRequesting && NetWorkHelper.isWifiDataEnable(getActivity())) {
+            /*if (mHasNext && (position > -10 + mCardList.size()) && !mIsRequesting && NetWorkHelper.isWifiDataEnable(getActivity())) {
                 fetchData();
-            }
+            }*/
         }
     };
 
@@ -227,6 +226,7 @@ public class CardViewPagerFragment extends AbsBaseFragment  {
             card.setBackgroundColor(HexUtils.randomColor(i));
             cardList.add(card);
         }
+        authors =null;
         mPreColor = HexUtils.getHexColor(cardList.get(0).getBackgroundColor());
         updateAppAdapter(cardList);
     }

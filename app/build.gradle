@@ -38,5 +38,7 @@ dependencies {
     compile 'co.lujun:androidtagview:1.1.4'
     compile 'com.jaeger.statusbarutil:library:1.4.0'
     compile 'com.orhanobut:dialogplus:1.11@aar'
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
 
 }

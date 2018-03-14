@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Dyansty.iml" filepath="$PROJECT_DIR$/Dyansty.iml" />
+      <module fileurl="file://D:\Programe\code\Tangshi\Dyansty.iml" filepath="D:\Programe\code\Tangshi\Dyansty.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Tangshi.iml" filepath="$PROJECT_DIR$/Tangshi.iml" />
       <module fileurl="file://D:\Deng\Android\Dyansty\Tangshi.iml" filepath="D:\Deng\Android\Dyansty\Tangshi.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://D:\Deng\Android\Dyansty\app\app.iml" filepath="D:\Deng\Android\Dyansty\app\app.iml" />

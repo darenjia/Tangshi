@@ -35,5 +35,5 @@ public class Constants {
             "id Integer primary key," +
             "translation text" +
             ")";
-
+    public static final String DATABASE_PATH = "/data/data/com.bokun.bkjcb.myapplication/databases/";
 }

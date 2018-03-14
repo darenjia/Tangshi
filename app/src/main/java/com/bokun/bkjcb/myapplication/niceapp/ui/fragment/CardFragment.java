@@ -17,7 +17,6 @@ import com.bokun.bkjcb.myapplication.R;
 import com.bokun.bkjcb.myapplication.bean.Dynasty;
 import com.bokun.bkjcb.myapplication.datebase.DataUtil;
 import com.bokun.bkjcb.myapplication.niceapp.bean.Card;
-import com.bokun.bkjcb.myapplication.niceapp.ui.adapter.DynastyAdapter;
 import com.bokun.bkjcb.myapplication.niceapp.ui.widget.HtmlTextView;
 import com.bokun.bkjcb.myapplication.niceapp.utils.AppUtils;
 
@@ -55,7 +54,7 @@ public class CardFragment extends AbsBaseFragment {
         mTitleText.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "fonts/songti.TTF"));
         mSubTitleText.setText(this.mCard.getSubTitle());
         this.mDigestText.setText(mCard.getDigest());
-        mCoverImageView.setAdapter(new DynastyAdapter(getContext(), DataUtil.getDynasties(getContext(), mCard.getTitle())));
+        //mCoverImageView.setAdapter(new DynastyAdapter(getContext(), DataUtil.getDynasties(getContext(), mCard.getTitle())));
 
         initAndDisplayCoverImage();
 

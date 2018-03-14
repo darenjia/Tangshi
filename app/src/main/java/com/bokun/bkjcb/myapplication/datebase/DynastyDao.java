@@ -18,8 +18,9 @@ import java.util.ArrayList;
 public class DynastyDao {
     SQLiteDatabase database;
     public DynastyDao(Context context) {
-        SQLiteOpenUtil util = new SQLiteOpenUtil(context);
-        database=util.getWritableDatabase();
+        /*SQLiteOpenUtil util = new SQLiteOpenUtil(context);
+        database=util.getWritableDatabase();*/
+        database=SQLUtil.newInstance(context).getDatabase();
     }
     public void insert(Dynasty dynasty){
         ContentValues values = new ContentValues();
